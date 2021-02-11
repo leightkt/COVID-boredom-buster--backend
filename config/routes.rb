@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   get "/getActivity", to: "activities#get_activity"
   get "/userLogin", to: "users#login"
   get "/newFav", to: "favorites#newFav"
+  get "/loading", to: "loads#loading"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
