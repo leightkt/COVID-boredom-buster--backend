@@ -18,4 +18,3 @@ test:
 production:
   <<: *default
   database: covid_bb_production
-rails 

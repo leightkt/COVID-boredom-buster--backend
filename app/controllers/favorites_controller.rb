@@ -43,6 +43,5 @@ class FavoritesController < ApplicationController
             )
         end
         render json: @favorite
-        # redirect_to "https://covid-boredom-buster.web.app/showFavorites.html?id=#{@user_id}"
     end
 end
