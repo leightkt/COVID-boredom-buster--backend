@@ -324,3 +324,53 @@ Processing by UsersController#show as */*
 Completed 200 OK in 37ms (Views: 0.2ms | ActiveRecord: 23.2ms | Allocations: 3653)
 
 
+Started GET "/users/1" for ::1 at 2021-02-11 14:14:22 -0700
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as */*
+  Parameters: {"username"=>"kitkat", "password"=>"[FILTERED]", "id"=>"1", "user"=>{}}
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mFavorite Load (1.7ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+  [1m[36mActivity Load (1.3ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (10.6ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (31.3ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+Completed 200 OK in 422ms (Views: 1.2ms | ActiveRecord: 156.3ms | Allocations: 21122)
+
+
+Started POST "/activities" for ::1 at 2021-02-11 14:16:35 -0700
+Processing by ActivitiesController#create as */*
+  Parameters: {"userID"=>1, "activity"=>"Bake something you've never tried before", "type"=>"cooking", "participants"=>1, "price"=>0.4, "key"=>"5665663", "accessibility"=>0.3}
+  [1m[36mActivity Load (0.4ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 5665663], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mActivity Create (2.2ms)[0m  [1m[32mINSERT INTO "activities" ("name", "accessibility", "participants", "price", "key", "created_at", "updated_at", "activity_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Bake something you've never tried before"], ["accessibility", 0.3], ["participants", 1], ["price", 0.4], ["key", 5665663], ["created_at", "2021-02-11 21:16:35.028375"], ["updated_at", "2021-02-11 21:16:35.028375"], ["activity_type", "cooking"]]
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+Redirected to http://localhost:9000/newFav?activity_id=6&user_id=1
+Completed 302 Found in 20ms (ActiveRecord: 4.0ms | Allocations: 3312)
+
+
+Started GET "/newFav?activity_id=6&user_id=1" for ::1 at 2021-02-11 14:16:35 -0700
+Processing by FavoritesController#newFav as */*
+  Parameters: {"activity_id"=>"6", "user_id"=>"1"}
+  [1m[36mFavorite Exists? (2.7ms)[0m  [1m[34mSELECT 1 AS one FROM "favorites" WHERE (user_id = 1 AND activity_id = 6) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:39:in `newFav'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:41:in `newFav'
+  [1m[36mActivity Load (13.3ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:42:in `newFav'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/favorites_controller.rb:40:in `newFav'
+  [1m[36mFavorite Create (2.9ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "activity_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["activity_id", 6], ["created_at", "2021-02-11 21:16:35.075036"], ["updated_at", "2021-02-11 21:16:35.075036"]]
+  ↳ app/controllers/favorites_controller.rb:40:in `newFav'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/favorites_controller.rb:40:in `newFav'
+Completed 200 OK in 35ms (Views: 0.3ms | ActiveRecord: 20.2ms | Allocations: 3430)
+
+
