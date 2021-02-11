@@ -42,6 +42,6 @@ class FavoritesController < ApplicationController
             activity: Activity.find(@activity_id)
             )
         end
-        redirect_to "http://localhost:3000/showFavorites.html?id=#{@user_id}"
+        redirect_to "https://covid-boredom-buster.web.app/showFavorites.html?id=#{@user_id}"
     end
 end
