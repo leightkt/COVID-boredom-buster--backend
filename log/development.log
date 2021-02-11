@@ -1,0 +1,2 @@
+  [1m[35m (590.7ms)[0m  [1m[35mCREATE DATABASE "covid_bb_development" ENCODING = 'utf8'[0m
+  [1m[35m (260.4ms)[0m  [1m[35mCREATE DATABASE "covid_bb_test" ENCODING = 'utf8'[0m
