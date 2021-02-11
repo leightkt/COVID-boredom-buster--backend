@@ -42,6 +42,7 @@ class FavoritesController < ApplicationController
             activity: Activity.find(@activity_id)
             )
         end
-        redirect_to "https://covid-boredom-buster.web.app/showFavorites.html?id=#{@user_id}"
+        render json: @favorite
+        # redirect_to "https://covid-boredom-buster.web.app/showFavorites.html?id=#{@user_id}"
     end
 end

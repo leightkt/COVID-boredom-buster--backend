@@ -24,7 +24,6 @@ class ActivitiesController < ApplicationController
             )
         end
         @activity_id = @activity.id
-        # redirect_to "http://localhost:9000/newFav?user_id=#{@user_id}&activity_id=${@activity_id}"
         redirect_to :controller => 'favorites', :action => 'newFav', :user_id => @user_id, :activity_id => @activity_id
     end
 
