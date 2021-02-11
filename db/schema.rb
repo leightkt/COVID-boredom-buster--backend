@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_01_26_222128) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "activities", force: :cascade do |t|
     t.string "name"
     t.float "accessibility"
@@ -25,8 +28,8 @@ ActiveRecord::Schema.define(version: 2021_01_26_222128) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "activity_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "activity_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["activity_id"], name: "index_favorites_on_activity_id"
