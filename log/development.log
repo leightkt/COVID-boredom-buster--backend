@@ -374,3 +374,1404 @@ Processing by FavoritesController#newFav as */*
 Completed 200 OK in 35ms (Views: 0.3ms | ActiveRecord: 20.2ms | Allocations: 3430)
 
 
+Started GET "/userLogin?name=Kat" for ::1 at 2021-02-11 14:55:57 -0700
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#login as */*
+  Parameters: {"name"=>"Kat"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Kat"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `login'
+Completed 200 OK in 65ms (Views: 13.3ms | ActiveRecord: 15.4ms | Allocations: 7802)
+
+
+Started GET "/getActivity?type=cooking" for ::1 at 2021-02-11 14:56:02 -0700
+Processing by ActivitiesController#get_activity as */*
+  Parameters: {"type"=>"cooking"}
+Completed 200 OK in 190ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 4451)
+
+
+Started POST "/activities" for ::1 at 2021-02-11 14:56:04 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>1, "name"=>"Learn a new recipe", "accessibility"=>"cooking", "participants"=>1, "price"=>0, "key"=>"6553978", "type"=>"cooking", "activity"=>{"name"=>"Learn a new recipe", "accessibility"=>"cooking", "type"=>"cooking", "participants"=>1, "price"=>0, "key"=>"6553978"}}
+  [1m[36mActivity Load (23.0ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 6553978], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (16.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mActivity Create (0.8ms)[0m  [1m[32mINSERT INTO "activities" ("name", "accessibility", "participants", "price", "key", "created_at", "updated_at", "activity_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "{\"name\"=>\"Learn a new recipe\", \"accessibility\"=>\"cooking\", \"type\"=>\"cooking\", \"participants\"=>1, \"price\"=>0, \"key\"=>\"6553978\"}"], ["accessibility", 0.0], ["participants", 1], ["price", 0.0], ["key", 6553978], ["created_at", "2021-02-11 21:56:04.416344"], ["updated_at", "2021-02-11 21:56:04.416344"], ["activity_type", "cooking"]]
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+Redirected to http://localhost:9000/newFav?activity_id=7&user_id=1
+Completed 302 Found in 97ms (ActiveRecord: 52.2ms | Allocations: 7948)
+
+
+Started GET "/users/1" for ::1 at 2021-02-11 14:56:04 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mFavorite Load (0.8ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+  [1m[36mActivity Load (1.3ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (34.3ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (94.5ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (0.3ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+Completed 200 OK in 289ms (Views: 0.2ms | ActiveRecord: 212.5ms | Allocations: 10598)
+
+
+Started GET "/users/1" for ::1 at 2021-02-11 14:56:55 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mFavorite Load (87.9ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+  [1m[36mActivity Load (23.3ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (1.8ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (3.8ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (24.8ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+Completed 200 OK in 256ms (Views: 0.3ms | ActiveRecord: 143.4ms | Allocations: 4496)
+
+
+Started GET "/userLogin?name=Kat" for ::1 at 2021-02-11 14:57:00 -0700
+Processing by UsersController#login as */*
+  Parameters: {"name"=>"Kat"}
+  [1m[36mUser Load (51.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Kat"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `login'
+Completed 200 OK in 86ms (Views: 0.7ms | ActiveRecord: 51.1ms | Allocations: 606)
+
+
+Started GET "/getActivity?type=education" for ::1 at 2021-02-11 14:57:03 -0700
+Processing by ActivitiesController#get_activity as */*
+  Parameters: {"type"=>"education"}
+Completed 200 OK in 121ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 2546)
+
+
+Started POST "/activities" for ::1 at 2021-02-11 14:57:04 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>1, "name"=>"Research a topic you're interested in", "accessibility"=>"education", "participants"=>1, "price"=>0, "key"=>"3561421", "type"=>"education", "activity"=>{"name"=>"Research a topic you're interested in", "accessibility"=>"education", "type"=>"education", "participants"=>1, "price"=>0, "key"=>"3561421"}}
+  [1m[36mActivity Load (4.4ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 3561421], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mActivity Create (0.7ms)[0m  [1m[32mINSERT INTO "activities" ("name", "accessibility", "participants", "price", "key", "created_at", "updated_at", "activity_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "{\"name\"=>\"Research a topic you're interested in\", \"accessibility\"=>\"education\", \"type\"=>\"education\", \"participants\"=>1, \"price\"=>0, \"key\"=>\"3561421\"}"], ["accessibility", 0.0], ["participants", 1], ["price", 0.0], ["key", 3561421], ["created_at", "2021-02-11 21:57:04.851574"], ["updated_at", "2021-02-11 21:57:04.851574"], ["activity_type", "education"]]
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (43.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+Redirected to http://localhost:9000/newFav?activity_id=8&user_id=1
+Completed 302 Found in 79ms (ActiveRecord: 48.4ms | Allocations: 2386)
+
+
+Started GET "/newFav?activity_id=8&user_id=1" for ::1 at 2021-02-11 14:57:04 -0700
+Processing by FavoritesController#newFav as JSON
+  Parameters: {"activity_id"=>"8", "user_id"=>"1", "favorite"=>{}}
+  [1m[36mFavorite Exists? (25.6ms)[0m  [1m[34mSELECT 1 AS one FROM "favorites" WHERE (user_id = 1 AND activity_id = 8) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:39:in `newFav'
+  [1m[36mUser Load (3.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:41:in `newFav'
+  [1m[36mActivity Load (0.6ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:42:in `newFav'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/favorites_controller.rb:40:in `newFav'
+  [1m[36mFavorite Create (31.6ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "activity_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["activity_id", 8], ["created_at", "2021-02-11 21:57:05.057406"], ["updated_at", "2021-02-11 21:57:05.057406"]]
+  ↳ app/controllers/favorites_controller.rb:40:in `newFav'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/favorites_controller.rb:40:in `newFav'
+Completed 200 OK in 139ms (Views: 0.7ms | ActiveRecord: 65.1ms | Allocations: 3427)
+
+
+Started POST "/activities" for ::1 at 2021-02-11 14:57:15 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>1, "name"=>"Research a topic you're interested in", "accessibility"=>"education", "participants"=>1, "price"=>0, "key"=>"3561421", "type"=>"education", "activity"=>{"name"=>"Research a topic you're interested in", "accessibility"=>"education", "type"=>"education", "participants"=>1, "price"=>0, "key"=>"3561421"}}
+  [1m[36mActivity Load (1.0ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 3561421], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:15:in `create'
+Redirected to http://localhost:9000/newFav?activity_id=8&user_id=1
+Completed 302 Found in 18ms (ActiveRecord: 1.0ms | Allocations: 637)
+
+
+Started GET "/newFav?activity_id=8&user_id=1" for ::1 at 2021-02-11 14:57:15 -0700
+Processing by FavoritesController#newFav as JSON
+  Parameters: {"activity_id"=>"8", "user_id"=>"1", "favorite"=>{}}
+  [1m[36mFavorite Exists? (1.2ms)[0m  [1m[34mSELECT 1 AS one FROM "favorites" WHERE (user_id = 1 AND activity_id = 8) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:39:in `newFav'
+  [1m[36mFavorite Load (1.1ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE (user_id = 1 AND activity_id = 8)[0m
+  ↳ app/controllers/favorites_controller.rb:45:in `newFav'
+Completed 200 OK in 33ms (Views: 2.1ms | ActiveRecord: 2.3ms | Allocations: 1216)
+
+
+Started GET "/userLogin?name=Kat" for ::1 at 2021-02-11 14:57:35 -0700
+Processing by UsersController#login as */*
+  Parameters: {"name"=>"Kat"}
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Kat"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `login'
+Completed 200 OK in 59ms (Views: 0.6ms | ActiveRecord: 2.2ms | Allocations: 605)
+
+
+Started GET "/getActivity?type=diy" for ::1 at 2021-02-11 14:57:39 -0700
+Processing by ActivitiesController#get_activity as */*
+  Parameters: {"type"=>"diy"}
+Completed 200 OK in 135ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 2533)
+
+
+Started POST "/activities" for ::1 at 2021-02-11 14:57:41 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>1, "name"=>"Fix something that's broken in your house", "accessibility"=>"diy", "participants"=>1, "price"=>0.1, "key"=>"6925988", "type"=>"diy", "activity"=>{"name"=>"Fix something that's broken in your house", "accessibility"=>"diy", "type"=>"diy", "participants"=>1, "price"=>0.1, "key"=>"6925988"}}
+  [1m[36mActivity Load (7.3ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 6925988], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (7.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mActivity Create (30.8ms)[0m  [1m[32mINSERT INTO "activities" ("name", "accessibility", "participants", "price", "key", "created_at", "updated_at", "activity_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "{\"name\"=>\"Fix something that's broken in your house\", \"accessibility\"=>\"diy\", \"type\"=>\"diy\", \"participants\"=>1, \"price\"=>0.1, \"key\"=>\"6925988\"}"], ["accessibility", 0.0], ["participants", 1], ["price", 0.1], ["key", 6925988], ["created_at", "2021-02-11 21:57:41.206204"], ["updated_at", "2021-02-11 21:57:41.206204"], ["activity_type", "diy"]]
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (3.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+Redirected to http://localhost:9000/newFav?activity_id=9&user_id=1
+Completed 302 Found in 197ms (ActiveRecord: 48.9ms | Allocations: 2387)
+
+
+Started GET "/users/1" for ::1 at 2021-02-11 14:57:41 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mFavorite Load (0.6ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+  [1m[36mActivity Load (0.4ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (6.0ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (25.7ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (2.1ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (0.6ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+Completed 200 OK in 85ms (Views: 0.2ms | ActiveRecord: 36.0ms | Allocations: 5306)
+
+
+Started GET "/users/1" for ::1 at 2021-02-11 14:58:15 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (34.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mFavorite Load (4.9ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+  [1m[36mActivity Load (10.5ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (2.0ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (0.5ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (29.7ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (29.0ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+Completed 200 OK in 279ms (Views: 1.1ms | ActiveRecord: 110.8ms | Allocations: 5306)
+
+
+Started GET "/users/1" for ::1 at 2021-02-11 15:00:45 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (64.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mFavorite Load (1.4ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+  [1m[36mActivity Load (20.2ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (27.6ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (0.8ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (18.3ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (0.5ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+Completed 200 OK in 247ms (Views: 0.3ms | ActiveRecord: 133.0ms | Allocations: 5305)
+
+
+Started GET "/users/1" for ::1 at 2021-02-11 15:01:14 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mFavorite Load (48.5ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+  [1m[36mActivity Load (5.2ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (29.9ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (49.5ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (6.6ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (16.9ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+Completed 200 OK in 216ms (Views: 0.3ms | ActiveRecord: 157.2ms | Allocations: 5305)
+
+
+Started GET "/users/1" for ::1 at 2021-02-11 15:01:22 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (104.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mFavorite Load (7.4ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+  [1m[36mActivity Load (35.2ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (1.7ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (2.2ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (27.7ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (6.2ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+Completed 200 OK in 289ms (Views: 0.6ms | ActiveRecord: 184.5ms | Allocations: 5306)
+
+
+Started GET "/users/1" for ::1 at 2021-02-11 15:07:18 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mFavorite Load (0.7ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+  [1m[36mActivity Load (0.4ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (0.4ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (0.5ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (7.5ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (4.8ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+Completed 200 OK in 70ms (Views: 0.2ms | ActiveRecord: 33.5ms | Allocations: 7519)
+
+
+Started DELETE "/favorites/6" for ::1 at 2021-02-11 15:07:26 -0700
+Processing by FavoritesController#destroy as */*
+  Parameters: {"id"=>"6"}
+  [1m[36mFavorite Load (0.5ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:31:in `destroy'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/favorites_controller.rb:32:in `destroy'
+  [1m[36mFavorite Destroy (1.2ms)[0m  [1m[31mDELETE FROM "favorites" WHERE "favorites"."id" = $1[0m  [["id", 6]]
+  ↳ app/controllers/favorites_controller.rb:32:in `destroy'
+  [1m[36mTRANSACTION (9.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/favorites_controller.rb:32:in `destroy'
+Completed 204 No Content in 26ms (ActiveRecord: 12.1ms | Allocations: 1916)
+
+
+Started GET "/userLogin?name=Kat" for ::1 at 2021-02-11 15:08:07 -0700
+Processing by UsersController#login as */*
+  Parameters: {"name"=>"Kat"}
+  [1m[36mUser Load (4.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Kat"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `login'
+Completed 200 OK in 19ms (Views: 0.4ms | ActiveRecord: 4.5ms | Allocations: 609)
+
+
+Started GET "/getActivity?type=charity" for ::1 at 2021-02-11 15:08:12 -0700
+Processing by ActivitiesController#get_activity as */*
+  Parameters: {"type"=>"charity"}
+Completed 200 OK in 131ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 2545)
+
+
+Started GET "/getActivity?type=charity" for ::1 at 2021-02-11 15:08:17 -0700
+Processing by ActivitiesController#get_activity as */*
+  Parameters: {"type"=>"charity"}
+Completed 200 OK in 115ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 2532)
+
+
+Started GET "/userLogin?name=Sam" for ::1 at 2021-02-11 15:08:33 -0700
+Processing by UsersController#login as */*
+  Parameters: {"name"=>"Sam"}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Sam"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `login'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:34:in `login'
+  [1m[36mUser Create (1.7ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Sam"], ["created_at", "2021-02-11 22:08:33.272911"], ["updated_at", "2021-02-11 22:08:33.272911"]]
+  ↳ app/controllers/users_controller.rb:34:in `login'
+  [1m[36mTRANSACTION (2.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:34:in `login'
+Completed 200 OK in 13ms (Views: 0.6ms | ActiveRecord: 5.8ms | Allocations: 2315)
+
+
+Started GET "/getActivity?type=diy" for ::1 at 2021-02-11 15:08:37 -0700
+Processing by ActivitiesController#get_activity as */*
+  Parameters: {"type"=>"diy"}
+Completed 200 OK in 123ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 2533)
+
+
+Started GET "/userLogin?name=Sam" for ::1 at 2021-02-11 15:08:56 -0700
+Processing by UsersController#login as */*
+  Parameters: {"name"=>"Sam"}
+  [1m[36mUser Load (6.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Sam"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `login'
+Completed 200 OK in 37ms (Views: 0.6ms | ActiveRecord: 6.0ms | Allocations: 605)
+
+
+Started GET "/getActivity?type=education" for ::1 at 2021-02-11 15:09:03 -0700
+Processing by ActivitiesController#get_activity as */*
+  Parameters: {"type"=>"education"}
+Completed 200 OK in 138ms (Views: 0.8ms | ActiveRecord: 0.0ms | Allocations: 2532)
+
+
+Started POST "/activities" for ::1 at 2021-02-11 15:09:05 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>3, "name"=>"Research a topic you're interested in", "accessibility"=>"education", "participants"=>1, "price"=>0, "key"=>"3561421", "type"=>"education", "activity"=>{"name"=>"Research a topic you're interested in", "accessibility"=>"education", "type"=>"education", "participants"=>1, "price"=>0, "key"=>"3561421"}}
+  [1m[36mActivity Load (0.6ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 3561421], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:15:in `create'
+Redirected to http://localhost:9000/newFav?activity_id=8&user_id=3
+Completed 302 Found in 25ms (ActiveRecord: 0.6ms | Allocations: 640)
+
+
+Started GET "/newFav?activity_id=8&user_id=3" for ::1 at 2021-02-11 15:09:05 -0700
+Processing by FavoritesController#newFav as JSON
+  Parameters: {"activity_id"=>"8", "user_id"=>"3", "favorite"=>{}}
+  [1m[36mFavorite Exists? (32.5ms)[0m  [1m[34mSELECT 1 AS one FROM "favorites" WHERE (user_id = 3 AND activity_id = 8) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:39:in `newFav'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:41:in `newFav'
+  [1m[36mActivity Load (1.3ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:42:in `newFav'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/favorites_controller.rb:40:in `newFav'
+  [1m[36mFavorite Create (4.8ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "activity_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 3], ["activity_id", 8], ["created_at", "2021-02-11 22:09:05.736815"], ["updated_at", "2021-02-11 22:09:05.736815"]]
+  ↳ app/controllers/favorites_controller.rb:40:in `newFav'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/favorites_controller.rb:40:in `newFav'
+Completed 200 OK in 131ms (Views: 1.8ms | ActiveRecord: 41.4ms | Allocations: 3146)
+
+
+Started GET "/users/3" for ::1 at 2021-02-11 15:09:05 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mFavorite Load (12.5ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+  [1m[36mActivity Load (31.0ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+Completed 200 OK in 86ms (Views: 0.4ms | ActiveRecord: 43.9ms | Allocations: 2021)
+
+
+Started GET "/users/3" for ::1 at 2021-02-11 15:09:28 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mFavorite Load (26.2ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+  [1m[36mActivity Load (13.1ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+Completed 200 OK in 64ms (Views: 0.3ms | ActiveRecord: 40.0ms | Allocations: 2021)
+
+
+Started DELETE "/favorites/7" for ::1 at 2021-02-11 15:09:32 -0700
+Processing by FavoritesController#destroy as */*
+  Parameters: {"id"=>"7"}
+  [1m[36mFavorite Load (0.5ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:31:in `destroy'
+  [1m[36mTRANSACTION (5.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/favorites_controller.rb:32:in `destroy'
+  [1m[36mFavorite Destroy (4.6ms)[0m  [1m[31mDELETE FROM "favorites" WHERE "favorites"."id" = $1[0m  [["id", 7]]
+  ↳ app/controllers/favorites_controller.rb:32:in `destroy'
+  [1m[36mTRANSACTION (28.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/favorites_controller.rb:32:in `destroy'
+Completed 204 No Content in 68ms (ActiveRecord: 39.2ms | Allocations: 1795)
+
+
+Started GET "/users/3" for ::1 at 2021-02-11 15:10:24 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (4.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mFavorite Load (7.9ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+Completed 200 OK in 41ms (Views: 0.4ms | ActiveRecord: 12.4ms | Allocations: 1189)
+
+
+Started GET "/userLogin?name=Sam" for ::1 at 2021-02-11 15:10:30 -0700
+Processing by UsersController#login as */*
+  Parameters: {"name"=>"Sam"}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Sam"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `login'
+Completed 200 OK in 27ms (Views: 0.6ms | ActiveRecord: 1.3ms | Allocations: 605)
+
+
+Started GET "/getActivity?type=education" for ::1 at 2021-02-11 15:10:31 -0700
+Processing by ActivitiesController#get_activity as */*
+  Parameters: {"type"=>"education"}
+Completed 200 OK in 138ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 2532)
+
+
+Started GET "/userLogin?name=Sam" for ::1 at 2021-02-11 15:11:01 -0700
+Processing by UsersController#login as */*
+  Parameters: {"name"=>"Sam"}
+  [1m[36mUser Load (12.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Sam"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `login'
+Completed 200 OK in 17ms (Views: 0.9ms | ActiveRecord: 12.2ms | Allocations: 605)
+
+
+Started GET "/userLogin?name=Sam" for ::1 at 2021-02-11 15:12:43 -0700
+Processing by UsersController#login as */*
+  Parameters: {"name"=>"Sam"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Sam"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `login'
+Completed 200 OK in 86ms (Views: 1.3ms | ActiveRecord: 53.7ms | Allocations: 4357)
+
+
+Started GET "/getActivity?type=education" for ::1 at 2021-02-11 15:12:45 -0700
+Processing by ActivitiesController#get_activity as */*
+  Parameters: {"type"=>"education"}
+Completed 200 OK in 180ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 2543)
+
+
+Started POST "/activities" for ::1 at 2021-02-11 15:12:47 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>3, "name"=>"Learn GraphQL", "accessibility"=>"education", "participants"=>1, "price"=>0, "key"=>"2167064", "type"=>"education", "activity"=>{"name"=>"Learn GraphQL", "accessibility"=>"education", "type"=>"education", "participants"=>1, "price"=>0, "key"=>"2167064"}}
+Started GET "/userLogin?name=Sam" for ::1 at 2021-02-11 15:13:33 -0700
+Processing by UsersController#login as */*
+  Parameters: {"name"=>"Sam"}
+  [1m[36mActivity Load (11.5ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 2167064], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:18:in `create'
+  [1m[36mActivity Create (0.6ms)[0m  [1m[32mINSERT INTO "activities" ("name", "accessibility", "participants", "price", "key", "created_at", "updated_at", "activity_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "{\"name\"=>\"Learn GraphQL\", \"accessibility\"=>\"education\", \"type\"=>\"education\", \"participants\"=>1, \"price\"=>0, \"key\"=>\"2167064\"}"], ["accessibility", 0.0], ["participants", 1], ["price", 0.0], ["key", 2167064], ["created_at", "2021-02-11 22:13:33.740507"], ["updated_at", "2021-02-11 22:13:33.740507"], ["activity_type", "education"]]
+  ↳ app/controllers/activities_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (25.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:18:in `create'
+Redirected to http://localhost:9000/newFav?activity_id=10&user_id=3
+Completed 302 Found in 46099ms (ActiveRecord: 70.5ms | Allocations: 72423)
+
+
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Sam"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `login'
+Completed 200 OK in 96ms (Views: 0.9ms | ActiveRecord: 38.0ms | Allocations: 10297)
+
+
+Started GET "/userLogin?name=Sam" for ::1 at 2021-02-11 15:13:39 -0700
+Processing by UsersController#login as */*
+  Parameters: {"name"=>"Sam"}
+  [1m[36mUser Load (35.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Sam"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `login'
+Completed 200 OK in 66ms (Views: 0.6ms | ActiveRecord: 35.6ms | Allocations: 605)
+
+
+Started GET "/getActivity?type=diy" for ::1 at 2021-02-11 15:13:42 -0700
+Processing by ActivitiesController#get_activity as */*
+  Parameters: {"type"=>"diy"}
+Completed 200 OK in 153ms (Views: 1.5ms | ActiveRecord: 0.0ms | Allocations: 2547)
+
+
+Started POST "/activities" for ::1 at 2021-02-11 15:13:43 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>3, "activity"=>"Make a scrapbook with pictures of your favorite memories", "accessibility"=>"diy", "participants"=>1, "price"=>0.1, "key"=>"5554174", "type"=>"diy"}
+  [1m[36mActivity Load (1.0ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 5554174], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:18:in `create'
+  [1m[36mActivity Create (2.3ms)[0m  [1m[32mINSERT INTO "activities" ("name", "accessibility", "participants", "price", "key", "created_at", "updated_at", "activity_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Make a scrapbook with pictures of your favorite memories"], ["accessibility", 0.0], ["participants", 1], ["price", 0.1], ["key", 5554174], ["created_at", "2021-02-11 22:14:26.579582"], ["updated_at", "2021-02-11 22:14:26.579582"], ["activity_type", "diy"]]
+  ↳ app/controllers/activities_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:18:in `create'
+Redirected to http://localhost:9000/newFav?activity_id=11&user_id=3
+Completed 302 Found in 43342ms (ActiveRecord: 4.6ms | Allocations: 4689)
+
+
+Started GET "/newFav?activity_id=11&user_id=3" for ::1 at 2021-02-11 15:14:26 -0700
+Processing by FavoritesController#newFav as JSON
+  Parameters: {"activity_id"=>"11", "user_id"=>"3", "favorite"=>{}}
+  [1m[36mFavorite Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "favorites" WHERE (user_id = 3 AND activity_id = 11) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:39:in `newFav'
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:41:in `newFav'
+  [1m[36mActivity Load (0.3ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:42:in `newFav'
+  [1m[36mTRANSACTION (20.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/favorites_controller.rb:40:in `newFav'
+  [1m[36mFavorite Create (0.8ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "activity_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 3], ["activity_id", 11], ["created_at", "2021-02-11 22:14:26.648437"], ["updated_at", "2021-02-11 22:14:26.648437"]]
+  ↳ app/controllers/favorites_controller.rb:40:in `newFav'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/favorites_controller.rb:40:in `newFav'
+Completed 200 OK in 44ms (Views: 0.3ms | ActiveRecord: 31.5ms | Allocations: 5709)
+
+
+Started POST "/activities" for ::1 at 2021-02-11 15:14:44 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>3, "activity"=>"Make a scrapbook with pictures of your favorite memories", "accessibility"=>"diy", "participants"=>1, "price"=>0.1, "key"=>"5554174", "type"=>"diy"}
+  [1m[36mActivity Load (0.3ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 5554174], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:15:in `create'
+Redirected to http://localhost:9000/newFav?activity_id=11&user_id=3
+Completed 302 Found in 32ms (ActiveRecord: 8.0ms | Allocations: 6494)
+
+
+Started GET "/newFav?activity_id=11&user_id=3" for ::1 at 2021-02-11 15:14:44 -0700
+Processing by FavoritesController#newFav as JSON
+  Parameters: {"activity_id"=>"11", "user_id"=>"3", "favorite"=>{}}
+  [1m[36mFavorite Exists? (1.9ms)[0m  [1m[34mSELECT 1 AS one FROM "favorites" WHERE (user_id = 3 AND activity_id = 11) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:39:in `newFav'
+  [1m[36mFavorite Load (2.7ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE (user_id = 3 AND activity_id = 11)[0m
+  ↳ app/controllers/favorites_controller.rb:45:in `newFav'
+Completed 200 OK in 16ms (Views: 7.4ms | ActiveRecord: 7.7ms | Allocations: 3429)
+
+
+Started GET "/userLogin?name=Sam" for ::1 at 2021-02-11 15:15:14 -0700
+Processing by UsersController#login as */*
+  Parameters: {"name"=>"Sam"}
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Sam"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `login'
+Completed 200 OK in 80ms (Views: 0.8ms | ActiveRecord: 36.5ms | Allocations: 4059)
+
+
+Started GET "/getActivity?type=cooking" for ::1 at 2021-02-11 15:15:18 -0700
+Processing by ActivitiesController#get_activity as */*
+  Parameters: {"type"=>"cooking"}
+Completed 200 OK in 178ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 2535)
+
+
+Started POST "/activities" for ::1 at 2021-02-11 15:15:20 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>3, "activity"=>"Create a cookbook with your favorite recipes", "accessibility"=>"cooking", "participants"=>1, "price"=>0, "key"=>"1947449", "type"=>"cooking"}
+  [1m[36mActivity Load (2.0ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 1947449], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (84.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mActivity Create (40.3ms)[0m  [1m[32mINSERT INTO "activities" ("name", "accessibility", "participants", "price", "key", "created_at", "updated_at", "activity_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Create a cookbook with your favorite recipes"], ["accessibility", 0.0], ["participants", 1], ["price", 0.0], ["key", 1947449], ["created_at", "2021-02-11 22:15:20.789688"], ["updated_at", "2021-02-11 22:15:20.789688"], ["activity_type", "cooking"]]
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+Redirected to http://localhost:9000/newFav?activity_id=12&user_id=3
+Completed 302 Found in 147ms (ActiveRecord: 128.3ms | Allocations: 2478)
+
+
+Started GET "/users/3" for ::1 at 2021-02-11 15:15:21 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mFavorite Load (0.5ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+  [1m[36mActivity Load (6.9ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+Completed 200 OK in 23ms (Views: 0.3ms | ActiveRecord: 7.9ms | Allocations: 2661)
+
+
+Started GET "/users/3" for ::1 at 2021-02-11 15:15:28 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (6.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mFavorite Load (29.9ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+  [1m[36mActivity Load (4.6ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+Completed 200 OK in 55ms (Views: 0.2ms | ActiveRecord: 41.4ms | Allocations: 2011)
+
+
+Started GET "/userLogin?name=Sam" for ::1 at 2021-02-11 15:16:38 -0700
+Processing by UsersController#login as */*
+  Parameters: {"name"=>"Sam"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Sam"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `login'
+Completed 200 OK in 145ms (Views: 0.9ms | ActiveRecord: 43.8ms | Allocations: 4223)
+
+
+Started GET "/getActivity?type=diy" for ::1 at 2021-02-11 15:16:41 -0700
+Processing by ActivitiesController#get_activity as */*
+  Parameters: {"type"=>"diy"}
+Completed 200 OK in 180ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 2559)
+
+
+Started POST "/activities" for ::1 at 2021-02-11 15:16:44 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>3, "activity"=>"Find a DIY to do", "accessibility"=>"diy", "participants"=>1, "price"=>0.4, "key"=>"4981819", "type"=>"diy"}
+  [1m[36mActivity Load (7.2ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 4981819], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (20.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mActivity Create (1.4ms)[0m  [1m[32mINSERT INTO "activities" ("name", "accessibility", "participants", "price", "key", "created_at", "updated_at", "activity_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Find a DIY to do"], ["accessibility", 0.0], ["participants", 1], ["price", 0.4], ["key", 4981819], ["created_at", "2021-02-11 22:16:44.696087"], ["updated_at", "2021-02-11 22:16:44.696087"], ["activity_type", "diy"]]
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+Redirected to http://localhost:9000/newFav?activity_id=13&user_id=3
+Completed 302 Found in 219ms (ActiveRecord: 170.0ms | Allocations: 8268)
+
+
+Started GET "/users/3" for ::1 at 2021-02-11 15:16:44 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (33.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mFavorite Load (2.2ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+  [1m[36mActivity Load (0.6ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+Completed 200 OK in 104ms (Views: 0.4ms | ActiveRecord: 74.5ms | Allocations: 5804)
+
+
+Started GET "/userLogin?name=Sam" for ::1 at 2021-02-11 15:17:28 -0700
+Processing by UsersController#login as */*
+  Parameters: {"name"=>"Sam"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Sam"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `login'
+Completed 200 OK in 148ms (Views: 0.6ms | ActiveRecord: 56.5ms | Allocations: 4225)
+
+
+Started GET "/getActivity?type=cooking" for ::1 at 2021-02-11 15:17:33 -0700
+Processing by ActivitiesController#get_activity as */*
+  Parameters: {"type"=>"cooking"}
+Completed 200 OK in 130ms (Views: 1.8ms | ActiveRecord: 0.0ms | Allocations: 2545)
+
+
+Started POST "/activities" for ::1 at 2021-02-11 15:17:35 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>3, "activity"=>"Bake a pie with some friends", "accessibility"=>"cooking", "participants"=>3, "price"=>0.3, "key"=>"3141592", "type"=>"cooking"}
+  [1m[36mActivity Load (36.0ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 3141592], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (26.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mActivity Create (51.2ms)[0m  [1m[32mINSERT INTO "activities" ("name", "accessibility", "participants", "price", "key", "created_at", "updated_at", "activity_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Bake a pie with some friends"], ["accessibility", 0.0], ["participants", 3], ["price", 0.3], ["key", 3141592], ["created_at", "2021-02-11 22:17:35.898887"], ["updated_at", "2021-02-11 22:17:35.898887"], ["activity_type", "cooking"]]
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (83.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+Redirected to http://localhost:9000/newFav?activity_id=14&user_id=3
+Completed 302 Found in 29548ms (ActiveRecord: 206.8ms | Allocations: 10768)
+
+
+Started GET "/users/3" for ::1 at 2021-02-11 15:18:05 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (3.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mFavorite Load (0.3ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+  [1m[36mActivity Load (0.8ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+Completed 200 OK in 87ms (Views: 0.3ms | ActiveRecord: 26.4ms | Allocations: 7271)
+
+
+Started DELETE "/favorites/8" for ::1 at 2021-02-11 15:18:24 -0700
+Processing by FavoritesController#destroy as */*
+  Parameters: {"id"=>"8"}
+  [1m[36mFavorite Load (0.4ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:31:in `destroy'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/favorites_controller.rb:32:in `destroy'
+  [1m[36mFavorite Destroy (134.4ms)[0m  [1m[31mDELETE FROM "favorites" WHERE "favorites"."id" = $1[0m  [["id", 8]]
+  ↳ app/controllers/favorites_controller.rb:32:in `destroy'
+  [1m[36mTRANSACTION (39.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/favorites_controller.rb:32:in `destroy'
+Completed 204 No Content in 207ms (ActiveRecord: 182.2ms | Allocations: 5189)
+
+
+Started GET "/userLogin?name=Kat" for ::1 at 2021-02-11 15:21:26 -0700
+Processing by UsersController#login as */*
+  Parameters: {"name"=>"Kat"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Kat"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `login'
+Completed 200 OK in 30ms (Views: 0.7ms | ActiveRecord: 5.3ms | Allocations: 4266)
+
+
+Started GET "/getActivity?type=charity" for ::1 at 2021-02-11 15:21:30 -0700
+  
+SyntaxError (/Users/katleight/Flatiron/code/mod-2/mod-2-project/COVID_BB_APP_Backend/app/controllers/activities_controller.rb:52: syntax error, unexpected end-of-input, expecting end):
+  
+app/controllers/activities_controller.rb:52: syntax error, unexpected end-of-input, expecting end
+app/controllers/activities_controller.rb:52: syntax error, unexpected end-of-input, expecting end
+Started GET "/userLogin?name=Kat" for ::1 at 2021-02-11 15:22:14 -0700
+Processing by UsersController#login as */*
+  Parameters: {"name"=>"Kat"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Kat"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `login'
+Completed 200 OK in 65ms (Views: 0.8ms | ActiveRecord: 47.3ms | Allocations: 4222)
+
+
+Started GET "/getActivity?type=charity" for ::1 at 2021-02-11 15:22:17 -0700
+Processing by ActivitiesController#get_activity as */*
+  Parameters: {"type"=>"charity"}
+Completed 200 OK in 137ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 2558)
+
+
+Started GET "/getActivity?type=charity" for ::1 at 2021-02-11 15:22:20 -0700
+Processing by ActivitiesController#get_activity as */*
+  Parameters: {"type"=>"charity"}
+Completed 200 OK in 127ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 2533)
+
+
+Started GET "/getActivity?type=music" for ::1 at 2021-02-11 15:22:23 -0700
+Processing by ActivitiesController#get_activity as */*
+  Parameters: {"type"=>"music"}
+Completed 200 OK in 126ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 2533)
+
+
+Started POST "/activities" for ::1 at 2021-02-11 15:22:25 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>1, "activity"=>"Mow your neighbor's lawn", "accessibility"=>"charity", "participants"=>1, "price"=>0, "key"=>"1303906", "type"=>"charity"}
+Started POST "/activities" for ::1 at 2021-02-11 15:22:25 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>1, "activity"=>"Contribute code or a monetary donation to an open-source software project", "accessibility"=>"charity", "participants"=>1, "price"=>0.1, "key"=>"7687030", "type"=>"charity"}
+Started POST "/activities" for ::1 at 2021-02-11 15:22:25 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>1, "activity"=>"Learn to play a new instrument", "accessibility"=>"music", "participants"=>1, "price"=>0.55, "key"=>"3192099", "type"=>"music"}
+  [1m[36mActivity Load (32.7ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 1303906], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:15:in `create'
+  [1m[36mActivity Load (0.5ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 7687030], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mActivity Create (37.9ms)[0m  [1m[32mINSERT INTO "activities" ("name", "accessibility", "participants", "price", "key", "created_at", "updated_at", "activity_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Mow your neighbor's lawn"], ["accessibility", 0.0], ["participants", 1], ["price", 0.0], ["key", 1303906], ["created_at", "2021-02-11 22:22:25.931729"], ["updated_at", "2021-02-11 22:22:25.931729"], ["activity_type", "charity"]]
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (5.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+Redirected to https://covid-boredom-buster-backend.herokuapp.com/newFav?user_id=1&activity_id=15
+Completed 302 Found in 231ms (ActiveRecord: 125.1ms | Allocations: 10405)
+
+
+  [1m[36mActivity Create (28.2ms)[0m  [1m[32mINSERT INTO "activities" ("name", "accessibility", "participants", "price", "key", "created_at", "updated_at", "activity_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Contribute code or a monetary donation to an open-source software project"], ["accessibility", 0.0], ["participants", 1], ["price", 0.1], ["key", 7687030], ["created_at", "2021-02-11 22:22:25.981880"], ["updated_at", "2021-02-11 22:22:25.981880"], ["activity_type", "charity"]]
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+Redirected to https://covid-boredom-buster-backend.herokuapp.com/newFav?user_id=1&activity_id=16
+Completed 302 Found in 254ms (ActiveRecord: 95.7ms | Allocations: 11027)
+
+
+  [1m[36mActivity Load (0.9ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 3192099], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mActivity Create (1.1ms)[0m  [1m[32mINSERT INTO "activities" ("name", "accessibility", "participants", "price", "key", "created_at", "updated_at", "activity_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Learn to play a new instrument"], ["accessibility", 0.0], ["participants", 1], ["price", 0.55], ["key", 3192099], ["created_at", "2021-02-11 22:22:26.072803"], ["updated_at", "2021-02-11 22:22:26.072803"], ["activity_type", "music"]]
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+Redirected to https://covid-boredom-buster-backend.herokuapp.com/newFav?user_id=1&activity_id=17
+Completed 302 Found in 314ms (ActiveRecord: 50.8ms | Allocations: 14809)
+
+
+Started GET "/users/1" for ::1 at 2021-02-11 15:22:26 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mFavorite Load (2.2ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+  [1m[36mActivity Load (0.8ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (2.6ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (24.8ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (5.6ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+Completed 200 OK in 138ms (Views: 0.3ms | ActiveRecord: 55.8ms | Allocations: 8329)
+
+
+Started GET "/userLogin?name=Kat" for ::1 at 2021-02-11 15:27:07 -0700
+Processing by UsersController#login as */*
+  Parameters: {"name"=>"Kat"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Kat"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `login'
+Completed 200 OK in 149ms (Views: 0.4ms | ActiveRecord: 80.6ms | Allocations: 4284)
+
+
+Started GET "/getActivity?type=music" for ::1 at 2021-02-11 15:27:11 -0700
+Processing by ActivitiesController#get_activity as */*
+  Parameters: {"type"=>"music"}
+Completed 200 OK in 134ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 2558)
+
+
+Started POST "/activities" for ::1 at 2021-02-11 15:27:13 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>1, "activity"=>"Start a band", "accessibility"=>"music", "participants"=>4, "price"=>0.3, "key"=>"5675880", "type"=>"music"}
+  [1m[36mActivity Load (1.4ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 5675880], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mActivity Create (0.6ms)[0m  [1m[32mINSERT INTO "activities" ("name", "accessibility", "participants", "price", "key", "created_at", "updated_at", "activity_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Start a band"], ["accessibility", 0.0], ["participants", 4], ["price", 0.3], ["key", 5675880], ["created_at", "2021-02-11 22:27:13.669703"], ["updated_at", "2021-02-11 22:27:13.669703"], ["activity_type", "music"]]
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+Redirected to http://localhost:9000/newFav?activity_id=18&user_id=1
+Completed 302 Found in 143ms (ActiveRecord: 49.8ms | Allocations: 8250)
+
+
+Started GET "/users/1" for ::1 at 2021-02-11 15:27:13 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mFavorite Load (0.4ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+  [1m[36mActivity Load (23.3ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (1.2ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (0.7ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (0.5ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+Completed 200 OK in 85ms (Views: 0.3ms | ActiveRecord: 32.7ms | Allocations: 8268)
+
+
+Started GET "/userLogin?name=Kat" for ::1 at 2021-02-11 15:31:12 -0700
+Processing by UsersController#login as */*
+  Parameters: {"name"=>"Kat"}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Kat"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `login'
+Completed 200 OK in 21ms (Views: 0.7ms | ActiveRecord: 5.5ms | Allocations: 4224)
+
+
+Started GET "/getActivity?type=music" for ::1 at 2021-02-11 15:31:15 -0700
+Processing by ActivitiesController#get_activity as */*
+  Parameters: {"type"=>"music"}
+Completed 200 OK in 141ms (Views: 0.8ms | ActiveRecord: 0.0ms | Allocations: 2543)
+
+
+Started POST "/activities" for ::1 at 2021-02-11 15:31:17 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>1, "activity"=>"Write a song", "accessibility"=>"music", "participants"=>1, "price"=>0, "key"=>"5188388", "type"=>"music"}
+  [1m[36mActivity Load (3.0ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 5188388], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mActivity Create (0.4ms)[0m  [1m[32mINSERT INTO "activities" ("name", "accessibility", "participants", "price", "key", "created_at", "updated_at", "activity_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Write a song"], ["accessibility", 0.0], ["participants", 1], ["price", 0.0], ["key", 5188388], ["created_at", "2021-02-11 22:31:17.984924"], ["updated_at", "2021-02-11 22:31:17.984924"], ["activity_type", "music"]]
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+Redirected to http://localhost:9000/newFav?user_id=1&activity_id=19
+Completed 302 Found in 112ms (ActiveRecord: 68.3ms | Allocations: 7633)
+
+
+Started GET "/users/1" for ::1 at 2021-02-11 15:31:18 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mFavorite Load (0.4ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+  [1m[36mActivity Load (0.3ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (0.5ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (2.1ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (6.3ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+Completed 200 OK in 51ms (Views: 0.3ms | ActiveRecord: 16.5ms | Allocations: 8258)
+
+
+Started GET "/userLogin?name=Kat" for ::1 at 2021-02-11 15:31:43 -0700
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#login as */*
+  Parameters: {"name"=>"Kat"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Kat"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `login'
+Completed 200 OK in 84ms (Views: 1.2ms | ActiveRecord: 37.3ms | Allocations: 7803)
+
+
+Started GET "/getActivity?type=music" for ::1 at 2021-02-11 15:31:46 -0700
+Processing by ActivitiesController#get_activity as */*
+  Parameters: {"type"=>"music"}
+Completed 200 OK in 138ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 3175)
+
+
+Started POST "/activities" for ::1 at 2021-02-11 15:31:47 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>1, "activity"=>"Learn the Chinese erhu", "accessibility"=>"music", "participants"=>1, "price"=>0.6, "key"=>"2742452", "type"=>"music"}
+  [1m[36mActivity Load (0.8ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 2742452], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mActivity Create (1.1ms)[0m  [1m[32mINSERT INTO "activities" ("name", "accessibility", "participants", "price", "key", "created_at", "updated_at", "activity_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Learn the Chinese erhu"], ["accessibility", 0.0], ["participants", 1], ["price", 0.6], ["key", 2742452], ["created_at", "2021-02-11 22:31:48.114344"], ["updated_at", "2021-02-11 22:31:48.114344"], ["activity_type", "music"]]
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+Redirected to http://localhost:9000/newFav?user_id=1&activity_id=20
+Completed 302 Found in 171ms (ActiveRecord: 18.2ms | Allocations: 8177)
+
+
+Started GET "/users/1" for ::1 at 2021-02-11 15:31:48 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (26.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mFavorite Load (0.8ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+  [1m[36mActivity Load (1.3ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (2.4ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (1.9ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (36.8ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+Completed 200 OK in 200ms (Views: 0.4ms | ActiveRecord: 92.9ms | Allocations: 10602)
+
+
+Started GET "/userLogin?name=Kat" for ::1 at 2021-02-11 15:32:32 -0700
+Processing by UsersController#login as */*
+  Parameters: {"name"=>"Kat"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Kat"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `login'
+Completed 200 OK in 78ms (Views: 0.6ms | ActiveRecord: 42.4ms | Allocations: 4290)
+
+
+Started GET "/getActivity?type=education" for ::1 at 2021-02-11 15:32:33 -0700
+Processing by ActivitiesController#get_activity as */*
+  Parameters: {"type"=>"education"}
+Completed 200 OK in 137ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 2557)
+
+
+Started POST "/activities" for ::1 at 2021-02-11 15:32:35 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>1, "activity"=>"Learn to greet someone in a new language", "accessibility"=>"education", "participants"=>1, "price"=>0.1, "key"=>"4704256", "type"=>"education"}
+  [1m[36mActivity Load (19.3ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 4704256], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (10.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mActivity Create (1.8ms)[0m  [1m[32mINSERT INTO "activities" ("name", "accessibility", "participants", "price", "key", "created_at", "updated_at", "activity_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Learn to greet someone in a new language"], ["accessibility", 0.0], ["participants", 1], ["price", 0.1], ["key", 4704256], ["created_at", "2021-02-11 22:32:35.493748"], ["updated_at", "2021-02-11 22:32:35.493748"], ["activity_type", "education"]]
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+Started GET "/users/1" for ::1 at 2021-02-11 15:32:35 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mFavorite Load (2.8ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+  [1m[36mActivity Load (1.8ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (1.8ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (2.8ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (27.9ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+Completed 200 OK in 269ms (Views: 0.4ms | ActiveRecord: 118.8ms | Allocations: 27220)
+
+
+Redirected to http://localhost:9000/newFav?user_id=1&activity_id=21
+Completed 302 Found in 17272ms (ActiveRecord: 44.2ms | Allocations: 54624)
+
+
+Started GET "/userLogin?name=Kat" for ::1 at 2021-02-11 15:33:25 -0700
+Processing by UsersController#login as */*
+  Parameters: {"name"=>"Kat"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Kat"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `login'
+Completed 200 OK in 106ms (Views: 0.5ms | ActiveRecord: 75.3ms | Allocations: 4285)
+
+
+Started GET "/getActivity?type=education" for ::1 at 2021-02-11 15:33:28 -0700
+Processing by ActivitiesController#get_activity as */*
+  Parameters: {"type"=>"education"}
+Completed 200 OK in 123ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 2556)
+
+
+Started POST "/activities" for ::1 at 2021-02-11 15:33:29 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>1, "activity"=>"Learn origami", "accessibility"=>"education", "participants"=>1, "price"=>0.2, "key"=>"8394738", "type"=>"education"}
+  [1m[36mActivity Load (0.4ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 8394738], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (23.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mActivity Create (0.9ms)[0m  [1m[32mINSERT INTO "activities" ("name", "accessibility", "participants", "price", "key", "created_at", "updated_at", "activity_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Learn origami"], ["accessibility", 0.0], ["participants", 1], ["price", 0.2], ["key", 8394738], ["created_at", "2021-02-11 22:33:29.580012"], ["updated_at", "2021-02-11 22:33:29.580012"], ["activity_type", "education"]]
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+Completed 204 No Content in 33039ms (ActiveRecord: 31.4ms | Allocations: 17310)
+
+
+Started GET "/users/1" for ::1 at 2021-02-11 15:34:02 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mFavorite Load (22.8ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+  [1m[36mActivity Load (5.1ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (31.1ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (0.7ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (7.3ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+Completed 200 OK in 125ms (Views: 0.4ms | ActiveRecord: 73.6ms | Allocations: 9847)
+
+
+Started GET "/userLogin?name=Kat" for ::1 at 2021-02-11 15:34:11 -0700
+Processing by UsersController#login as */*
+  Parameters: {"name"=>"Kat"}
+  [1m[36mUser Load (24.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Kat"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `login'
+Completed 200 OK in 123ms (Views: 3.1ms | ActiveRecord: 63.7ms | Allocations: 4223)
+
+
+Started GET "/getActivity?type=cooking" for ::1 at 2021-02-11 15:34:14 -0700
+Processing by ActivitiesController#get_activity as */*
+  Parameters: {"type"=>"cooking"}
+Completed 200 OK in 145ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 2543)
+
+
+Started POST "/activities" for ::1 at 2021-02-11 15:34:16 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>1, "activity"=>"Learn a new recipe", "accessibility"=>"cooking", "participants"=>1, "price"=>0, "key"=>"6553978", "type"=>"cooking"}
+  [1m[36mActivity Load (1.8ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 6553978], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:15:in `create'
+Completed 204 No Content in 147ms (ActiveRecord: 126.0ms | Allocations: 5764)
+
+
+Started GET "/users/1" for ::1 at 2021-02-11 15:34:16 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (2.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mFavorite Load (0.8ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+  [1m[36mActivity Load (0.5ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (2.7ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (23.0ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (1.2ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+Completed 200 OK in 226ms (Views: 0.3ms | ActiveRecord: 157.9ms | Allocations: 8250)
+
+
+Started GET "/userLogin?name=Kat" for ::1 at 2021-02-11 15:37:41 -0700
+Processing by UsersController#login as */*
+  Parameters: {"name"=>"Kat"}
+  [1m[36mUser Load (30.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Kat"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `login'
+Completed 200 OK in 179ms (Views: 1.9ms | ActiveRecord: 135.2ms | Allocations: 4266)
+
+
+Started GET "/getActivity?type=music" for ::1 at 2021-02-11 15:37:45 -0700
+Processing by ActivitiesController#get_activity as */*
+  Parameters: {"type"=>"music"}
+Completed 200 OK in 152ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 2559)
+
+
+Started POST "/activities" for ::1 at 2021-02-11 15:37:46 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>1, "activity"=>"Listen to music you haven't heard in a while", "accessibility"=>"music", "participants"=>1, "price"=>0.05, "key"=>"4296813", "type"=>"music"}
+  [1m[36mActivity Load (30.2ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 4296813], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (11.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mActivity Create (2.2ms)[0m  [1m[32mINSERT INTO "activities" ("name", "accessibility", "participants", "price", "key", "created_at", "updated_at", "activity_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Listen to music you haven't heard in a while"], ["accessibility", 0.0], ["participants", 1], ["price", 0.05], ["key", 4296813], ["created_at", "2021-02-11 22:37:47.138058"], ["updated_at", "2021-02-11 22:37:47.138058"], ["activity_type", "music"]]
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+Redirected to http://localhost:9000/newFav?activity_id=23&user_id=1
+Completed 302 Found in 19228ms (ActiveRecord: 155.7ms | Allocations: 10945)
+
+
+Started GET "/users/1" for ::1 at 2021-02-11 15:38:06 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mFavorite Load (0.5ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+  [1m[36mActivity Load (25.6ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (0.3ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (0.5ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (0.4ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+Completed 200 OK in 100ms (Views: 0.3ms | ActiveRecord: 55.1ms | Allocations: 8268)
+
+
+Started GET "/userLogin?name=Kat" for ::1 at 2021-02-11 15:42:08 -0700
+Processing by UsersController#login as */*
+  Parameters: {"name"=>"Kat"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Kat"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `login'
+Completed 200 OK in 48ms (Views: 1.6ms | ActiveRecord: 13.4ms | Allocations: 4223)
+
+
+Started GET "/getActivity?type=charity" for ::1 at 2021-02-11 15:42:11 -0700
+Processing by ActivitiesController#get_activity as */*
+  Parameters: {"type"=>"charity"}
+Completed 200 OK in 129ms (Views: 0.9ms | ActiveRecord: 0.0ms | Allocations: 2544)
+
+
+Started POST "/activities" for ::1 at 2021-02-11 15:42:13 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>1, "activity"=>"Volunteer at your local food bank", "accessibility"=>"charity", "participants"=>1, "price"=>0, "key"=>"2055368", "type"=>"charity"}
+Started GET "/users/1" for ::1 at 2021-02-11 15:42:13 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mActivity Load (54.5ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 2055368], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:15:in `create'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mFavorite Load (0.7ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+  [1m[36mTRANSACTION (3.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mActivity Load (0.7ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Create (3.5ms)[0m  [1m[32mINSERT INTO "activities" ("name", "accessibility", "participants", "price", "key", "created_at", "updated_at", "activity_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Volunteer at your local food bank"], ["accessibility", 0.0], ["participants", 1], ["price", 0.0], ["key", 2055368], ["created_at", "2021-02-11 22:42:13.397857"], ["updated_at", "2021-02-11 22:42:13.397857"], ["activity_type", "charity"]]
+  [1m[36mActivity Load (0.9ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (0.4ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (1.1ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (6.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+Completed 200 OK in 129ms (Views: 0.3ms | ActiveRecord: 38.2ms | Allocations: 14900)
+
+
+Redirected to http://localhost:9000/newFav?activity_id=24&user_id=1
+Completed 302 Found in 18860ms (ActiveRecord: 118.2ms | Allocations: 21708)
+
+
+Started GET "/userLogin?name=Kat" for ::1 at 2021-02-11 15:42:52 -0700
+Processing by UsersController#login as */*
+  Parameters: {"name"=>"Kat"}
+  [1m[36mUser Load (19.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Kat"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `login'
+Completed 200 OK in 118ms (Views: 1.8ms | ActiveRecord: 46.4ms | Allocations: 4225)
+
+
+Started GET "/getActivity?type=cooking" for ::1 at 2021-02-11 15:42:57 -0700
+Processing by ActivitiesController#get_activity as */*
+  Parameters: {"type"=>"cooking"}
+Completed 200 OK in 129ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 2558)
+
+
+Started POST "/activities" for ::1 at 2021-02-11 15:42:58 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>1, "activity"=>"Make homemade ice cream", "accessibility"=>"cooking", "participants"=>1, "price"=>0.2, "key"=>"3818400", "type"=>"cooking"}
+  [1m[36mActivity Load (58.7ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 3818400], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (17.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mActivity Create (0.9ms)[0m  [1m[32mINSERT INTO "activities" ("name", "accessibility", "participants", "price", "key", "created_at", "updated_at", "activity_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Make homemade ice cream"], ["accessibility", 0.0], ["participants", 1], ["price", 0.2], ["key", 3818400], ["created_at", "2021-02-11 22:42:58.672288"], ["updated_at", "2021-02-11 22:42:58.672288"], ["activity_type", "cooking"]]
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (5.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+Redirected to http://localhost:9000/newFav?activity_id=25&user_id=1
+Completed 302 Found in 219ms (ActiveRecord: 180.2ms | Allocations: 8226)
+
+
+Started GET "/users/1" for ::1 at 2021-02-11 15:42:58 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (2.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mFavorite Load (0.7ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+  [1m[36mActivity Load (12.0ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (1.0ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (1.0ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (0.7ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+Completed 200 OK in 197ms (Views: 0.3ms | ActiveRecord: 108.0ms | Allocations: 8258)
+
+
+Started GET "/userLogin?name=Kat" for ::1 at 2021-02-11 15:45:23 -0700
+Processing by UsersController#login as */*
+  Parameters: {"name"=>"Kat"}
+  [1m[36mUser Load (12.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Kat"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `login'
+Completed 200 OK in 201ms (Views: 1.7ms | ActiveRecord: 134.5ms | Allocations: 4224)
+
+
+Started GET "/getActivity?type=music" for ::1 at 2021-02-11 15:45:28 -0700
+Processing by ActivitiesController#get_activity as */*
+  Parameters: {"type"=>"music"}
+Completed 200 OK in 134ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 2548)
+
+
+Started POST "/activities" for ::1 at 2021-02-11 15:45:32 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>1, "activity"=>"Listen to music you haven't heard in a while", "accessibility"=>"music", "participants"=>1, "price"=>0.05, "key"=>"4296813", "type"=>"music"}
+  [1m[36mActivity Load (0.8ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 4296813], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:15:in `create'
+Started GET "/users/1" for ::1 at 2021-02-11 15:46:03 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mFavorite Load (6.4ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+  [1m[36mFavorite Exists? (41.1ms)[0m  [1m[34mSELECT 1 AS one FROM "favorites" WHERE (user_id = 1 AND activity_id = 23) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:57:in `newFav'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:59:in `newFav'
+  [1m[36mActivity Load (0.4ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:60:in `newFav'
+  [1m[36mActivity Load (5.4ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mTRANSACTION (3.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:58:in `newFav'
+  [1m[36mActivity Load (1.4ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (24.1ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mFavorite Create (29.5ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "activity_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["activity_id", 23], ["created_at", "2021-02-11 22:46:10.957273"], ["updated_at", "2021-02-11 22:46:10.957273"]]
+  [1m[36mActivity Load (0.5ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:58:in `newFav'
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+Completed 200 OK in 121ms (Views: 0.1ms | ActiveRecord: 73.2ms | Allocations: 12458)
+
+
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:58:in `newFav'
+Completed 200 OK in 38108ms (Views: 0.6ms | ActiveRecord: 236.8ms | Allocations: 101393)
+
+
+Started GET "/userLogin?name=Kat" for ::1 at 2021-02-11 15:46:25 -0700
+Processing by UsersController#login as */*
+  Parameters: {"name"=>"Kat"}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Kat"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `login'
+Completed 200 OK in 119ms (Views: 1.2ms | ActiveRecord: 45.3ms | Allocations: 4225)
+
+
+Started GET "/getActivity?type=music" for ::1 at 2021-02-11 15:46:29 -0700
+Processing by ActivitiesController#get_activity as */*
+  Parameters: {"type"=>"music"}
+Completed 200 OK in 184ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 2557)
+
+
+Started POST "/activities" for ::1 at 2021-02-11 15:46:30 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>1, "activity"=>"Write a song", "accessibility"=>"music", "participants"=>1, "price"=>0, "key"=>"5188388", "type"=>"music"}
+  [1m[36mActivity Load (28.3ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 5188388], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:15:in `create'
+  [1m[36mFavorite Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "favorites" WHERE (user_id = 1 AND activity_id = 19) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:56:in `newFav'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:58:in `newFav'
+  [1m[36mActivity Load (0.5ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:59:in `newFav'
+  [1m[36mTRANSACTION (19.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:57:in `newFav'
+Started GET "/users/1" for ::1 at 2021-02-11 15:46:31 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mFavorite Create (47.9ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "activity_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["activity_id", 19], ["created_at", "2021-02-11 22:46:31.023398"], ["updated_at", "2021-02-11 22:46:31.023398"]]
+  ↳ app/controllers/activities_controller.rb:57:in `newFav'
+  [1m[36mTRANSACTION (44.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (26.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:57:in `newFav'
+  ↳ app/controllers/users_controller.rb:9:in `show'
+Completed 200 OK in 365ms (Views: 0.7ms | ActiveRecord: 211.5ms | Allocations: 13521)
+
+
+  [1m[36mFavorite Load (4.9ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+  [1m[36mActivity Load (31.2ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (1.9ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (53.9ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (27.1ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (0.5ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (0.5ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+Completed 200 OK in 214ms (Views: 0.3ms | ActiveRecord: 146.7ms | Allocations: 7877)
+
+
+Started DELETE "/favorites/9" for ::1 at 2021-02-11 15:46:37 -0700
+Processing by FavoritesController#destroy as */*
+  Parameters: {"id"=>"9"}
+  [1m[36mFavorite Load (0.6ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:31:in `destroy'
+  [1m[36mTRANSACTION (14.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/favorites_controller.rb:32:in `destroy'
+  [1m[36mFavorite Destroy (29.9ms)[0m  [1m[31mDELETE FROM "favorites" WHERE "favorites"."id" = $1[0m  [["id", 9]]
+  ↳ app/controllers/favorites_controller.rb:32:in `destroy'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/favorites_controller.rb:32:in `destroy'
+Completed 204 No Content in 76ms (ActiveRecord: 45.9ms | Allocations: 1922)
+
+
+Started GET "/userLogin?name=Kat" for ::1 at 2021-02-11 15:47:05 -0700
+Processing by UsersController#login as */*
+  Parameters: {"name"=>"Kat"}
+  [1m[36mUser Load (16.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Kat"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `login'
+Completed 200 OK in 40ms (Views: 0.7ms | ActiveRecord: 16.8ms | Allocations: 606)
+
+
+Started GET "/getActivity?type=charity" for ::1 at 2021-02-11 15:47:07 -0700
+Processing by ActivitiesController#get_activity as */*
+  Parameters: {"type"=>"charity"}
+Completed 200 OK in 129ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 2532)
+
+
+Started POST "/activities" for ::1 at 2021-02-11 15:47:09 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>1, "activity"=>"Clean out your closet and donate the clothes you've outgrown", "accessibility"=>"charity", "participants"=>1, "price"=>0, "key"=>"9026787", "type"=>"charity"}
+  [1m[36mActivity Load (0.4ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 9026787], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (64.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mActivity Create (76.8ms)[0m  [1m[32mINSERT INTO "activities" ("name", "accessibility", "participants", "price", "key", "created_at", "updated_at", "activity_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Clean out your closet and donate the clothes you've outgrown"], ["accessibility", 0.0], ["participants", 1], ["price", 0.0], ["key", 9026787], ["created_at", "2021-02-11 22:47:09.596230"], ["updated_at", "2021-02-11 22:47:09.596230"], ["activity_type", "charity"]]
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (6.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mFavorite Exists? (39.0ms)[0m  [1m[34mSELECT 1 AS one FROM "favorites" WHERE (user_id = 1 AND activity_id = 26) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:56:in `newFav'
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:58:in `newFav'
+  [1m[36mActivity Load (5.4ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 26], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:59:in `newFav'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:57:in `newFav'
+  [1m[36mFavorite Create (46.9ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "activity_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["activity_id", 26], ["created_at", "2021-02-11 22:47:09.805713"], ["updated_at", "2021-02-11 22:47:09.805713"]]
+  ↳ app/controllers/activities_controller.rb:57:in `newFav'
+  [1m[36mTRANSACTION (33.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:57:in `newFav'
+Completed 200 OK in 307ms (Views: 0.7ms | ActiveRecord: 274.5ms | Allocations: 5435)
+
+
+Started GET "/users/1" for ::1 at 2021-02-11 15:47:09 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mFavorite Load (0.7ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/services/user_serializer.rb:17:in `map'
+  [1m[36mActivity Load (2.9ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (2.6ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (23.8ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (0.7ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (0.5ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+  [1m[36mActivity Load (1.1ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 26], ["LIMIT", 1]]
+  ↳ app/services/user_serializer.rb:19:in `block in extractFavorites'
+Completed 200 OK in 77ms (Views: 0.5ms | ActiveRecord: 32.8ms | Allocations: 6115)
+
+

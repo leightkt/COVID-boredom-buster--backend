@@ -24,7 +24,7 @@ class ActivitiesController < ApplicationController
             )
         end
         @activity_id = @activity.id
-        redirect_to :controller => 'favorites', :action => 'newFav', :user_id => @user_id, :activity_id => @activity_id
+        newFav @user_id, @activity_id
     end
 
     def update
@@ -49,5 +49,16 @@ class ActivitiesController < ApplicationController
         response = RestClient.get("http://www.boredapi.com/api/activity?type=#{type}")
         result = JSON.parse response
         render json: result
+    end
+
+    def newFav user_id, activity_id
+        @favorite = Favorite.where("user_id = ? AND activity_id = ?", @user_id, @activity_id)
+        if @favorite.empty?
+            @favorite = Favorite.create(
+            user: User.find(@user_id),
+            activity: Activity.find(@activity_id)
+            )
+        end
+        render json: @favorite
     end
 end

@@ -32,16 +32,4 @@ class FavoritesController < ApplicationController
         @favorite.destroy
     end
 
-    def newFav
-        @user_id = params[:user_id].to_i
-        @activity_id = params[:activity_id].to_i
-        @favorite = Favorite.where("user_id = ? AND activity_id = ?", @user_id, @activity_id)
-        if @favorite.empty?
-            @favorite = Favorite.create(
-            user: User.find(@user_id),
-            activity: Activity.find(@activity_id)
-            )
-        end
-        render json: @favorite
-    end
 end
