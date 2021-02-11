@@ -16,11 +16,11 @@ class UserSerializer
     def extractFavorites
         @user.favorites.map do |favorite|
             newfav = favorite.as_json
-            activity = favorite.activity.as_json
-            activity["activity_type"] = activity["activity_type"].capitalize
-            activity["accessibility"] = updateAccessibility(activity)
-            activity["price"] = updatePrice(activity)
-            newfav["activity"] = activity
+            newactivity = favorite.activity.as_json
+            newactivity["activity_type"] = newactivity["activity_type"].capitalize
+            newactivity["accessibility"] = updateAccessibility(newactivity)
+            newactivity["price"] = updatePrice(newactivity)
+            newfav["activity"] = newactivity
             @favorites << newfav
         end
     end
