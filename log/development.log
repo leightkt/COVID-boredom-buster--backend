@@ -1775,3 +1775,121 @@ Processing by UsersController#show as */*
 Completed 200 OK in 77ms (Views: 0.5ms | ActiveRecord: 32.8ms | Allocations: 6115)
 
 
+Started POST "/activities" for ::1 at 2021-02-11 15:58:28 -0700
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>1, "activity"=>"Memorize a favorite quote or poem", "accessibility"=>"education", "participants"=>1, "price"=>0, "key"=>"9008639", "type"=>"education"}
+  [1m[36mActivity Load (0.8ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 9008639], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:15:in `create'
+  [1m[36mFavorite Exists? (25.4ms)[0m  [1m[34mSELECT 1 AS one FROM "favorites" WHERE (user_id = 1 AND activity_id = 5) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:56:in `newFav'
+  [1m[36mFavorite Load (0.8ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE (user_id = 1 AND activity_id = 5)[0m
+  ↳ app/controllers/activities_controller.rb:62:in `newFav'
+Completed 200 OK in 266ms (Views: 42.8ms | ActiveRecord: 102.3ms | Allocations: 14653)
+
+
+Started POST "/activities" for ::1 at 2021-02-11 16:01:13 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>1, "activity"=>"Study a foreign language", "accessibility"=>0.1, "participants"=>1, "price"=>0, "key"=>"9765530", "type"=>"education"}
+  [1m[36mActivity Load (0.5ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 9765530], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (43.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mActivity Create (37.8ms)[0m  [1m[32mINSERT INTO "activities" ("name", "accessibility", "participants", "price", "key", "created_at", "updated_at", "activity_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Study a foreign language"], ["accessibility", 0.1], ["participants", 1], ["price", 0.0], ["key", 9765530], ["created_at", "2021-02-11 23:01:13.592690"], ["updated_at", "2021-02-11 23:01:13.592690"], ["activity_type", "education"]]
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (4.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:17:in `create'
+  [1m[36mFavorite Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "favorites" WHERE (user_id = 1 AND activity_id = 27) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:56:in `newFav'
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:58:in `newFav'
+  [1m[36mActivity Load (1.4ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:59:in `newFav'
+  [1m[36mTRANSACTION (10.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:57:in `newFav'
+  [1m[36mFavorite Create (2.7ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "activity_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["activity_id", 27], ["created_at", "2021-02-11 23:01:13.821222"], ["updated_at", "2021-02-11 23:01:13.821222"]]
+  ↳ app/controllers/activities_controller.rb:57:in `newFav'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:57:in `newFav'
+Completed 200 OK in 299ms (Views: 1.8ms | ActiveRecord: 114.6ms | Allocations: 11593)
+
+
+Started POST "/activities" for ::1 at 2021-02-11 16:01:27 -0700
+Started POST "/activities" for ::1 at 2021-02-11 16:01:27 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>1, "activity"=>"Study a foreign language", "accessibility"=>0.1, "participants"=>1, "price"=>0, "key"=>"9765530", "type"=>"education"}
+  [1m[36mActivity Load (0.7ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 9765530], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:16:in `create'
+  [1m[36mFavorite Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "favorites" WHERE (user_id = 1 AND activity_id = 27) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:57:in `newFav'
+  [1m[36mFavorite Load (3.0ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE (user_id = 1 AND activity_id = 27)[0m
+  ↳ app/controllers/activities_controller.rb:63:in `newFav'
+Completed 200 OK in 31311ms (Views: 7.1ms | ActiveRecord: 23.4ms | Allocations: 48265)
+
+
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>1, "activity"=>"Learn to sew on a button", "accessibility"=>0.1, "participants"=>1, "price"=>0.05, "key"=>"8731971", "type"=>"education"}
+  [1m[36mActivity Load (0.4ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 8731971], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:18:in `create'
+  [1m[36mActivity Create (24.4ms)[0m  [1m[32mINSERT INTO "activities" ("name", "accessibility", "participants", "price", "key", "created_at", "updated_at", "activity_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Learn to sew on a button"], ["accessibility", 0.1], ["participants", 1], ["price", 0.05], ["key", 8731971], ["created_at", "2021-02-11 23:02:02.752769"], ["updated_at", "2021-02-11 23:02:02.752769"], ["activity_type", "education"]]
+  ↳ app/controllers/activities_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:18:in `create'
+  [1m[36mFavorite Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "favorites" WHERE (user_id = 1 AND activity_id = 28) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:57:in `newFav'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:59:in `newFav'
+  [1m[36mActivity Load (22.9ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:60:in `newFav'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:58:in `newFav'
+  [1m[36mFavorite Create (0.6ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "activity_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["activity_id", 28], ["created_at", "2021-02-11 23:02:02.836839"], ["updated_at", "2021-02-11 23:02:02.836839"]]
+  ↳ app/controllers/activities_controller.rb:58:in `newFav'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:58:in `newFav'
+Completed 200 OK in 3714ms (Views: 0.5ms | ActiveRecord: 63.0ms | Allocations: 20206)
+
+
+Started POST "/activities" for ::1 at 2021-02-11 16:13:00 -0700
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>6, "activity"=>"Learn how to write in shorthand", "accessibility"=>0.1, "participants"=>1, "price"=>0, "key"=>"6778219", "type"=>"education"}
+  [1m[36mActivity Load (1.4ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 6778219], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (11.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:18:in `create'
+  [1m[36mActivity Create (0.8ms)[0m  [1m[32mINSERT INTO "activities" ("name", "accessibility", "participants", "price", "key", "created_at", "updated_at", "activity_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Learn how to write in shorthand"], ["accessibility", 0.1], ["participants", 1], ["price", 0.0], ["key", 6778219], ["created_at", "2021-02-11 23:13:42.850331"], ["updated_at", "2021-02-11 23:13:42.850331"], ["activity_type", "education"]]
+  ↳ app/controllers/activities_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:18:in `create'
+  [1m[36mFavorite Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "favorites" WHERE (user_id = 6 AND activity_id = 29) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:58:in `newFav'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:60:in `newFav'
+Completed 404 Not Found in 43849ms (ActiveRecord: 117.2ms | Allocations: 59107)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=6):
+  
+app/controllers/activities_controller.rb:60:in `newFav'
+app/controllers/activities_controller.rb:29:in `create'
+Started POST "/activities" for ::1 at 2021-02-11 16:14:05 -0700
+Processing by ActivitiesController#create as JSON
+  Parameters: {"userID"=>6, "activity"=>"Learn how to write in shorthand", "accessibility"=>0.1, "participants"=>1, "price"=>0, "key"=>"6778219", "type"=>"education"}
+  [1m[36mActivity Load (25.2ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."key" = $1 LIMIT $2[0m  [["key", 6778219], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:15:in `create'
+  [1m[36mFavorite Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "favorites" WHERE (user_id = 6 AND activity_id = 29) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:57:in `newFav'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:59:in `newFav'
+Completed 404 Not Found in 7564ms (ActiveRecord: 76.4ms | Allocations: 12674)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=6):
+  
+app/controllers/activities_controller.rb:59:in `newFav'
+app/controllers/activities_controller.rb:28:in `create'
